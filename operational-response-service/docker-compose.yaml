@@ -1,0 +1,46 @@
+services: 
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: oprs-mailpit
+    restart: unless-stopped
+    volumes:
+      - mailpit_data:/data
+    ports:
+      - "28025:8025"
+      - "21025:1025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+    networks:
+      oprs-dev-net:
+        aliases:
+          - oprs-mailpit
+
+  database:
+    container_name: oprs-db
+    image: mysql:8.3.0
+    restart: always
+    volumes:
+      - ./mysql/init-script.sql:/docker-entrypoint-initdb.d/init-script.sql
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=oprs
+      - MYSQL_USER=oprs
+      - MYSQL_PASSWORD=oprs_pass
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no
+    ports:
+      - "3306:3306"
+    command: mysqld --lower_case_table_names=1 --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    networks:
+      oprs-dev-net:
+        aliases:
+          - oprs-db
+
+volumes:
+  mailpit_data:
+  mysql_data:
+
+networks:
+  oprs-dev-net:
+    driver: bridge
