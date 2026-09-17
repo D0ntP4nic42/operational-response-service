@@ -43,4 +43,5 @@ volumes:
 
 networks:
   oprs-dev-net:
-    driver: bridge
+    external: true
+    name: oprs-dev-net
