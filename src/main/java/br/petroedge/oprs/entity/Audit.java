@@ -16,19 +16,20 @@ import lombok.Data;
 public class Audit {
     @Id 
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false, comment = "ID do registro de auditoria")
     private String id;
-    @Column(name = "entidade", nullable = false)
+    @Column(name = "entidade", nullable = false, comment = "Nome da entidade auditada")
     private String entidade;
-    @Column(name = "entidade_id", nullable = false)
+    @Column(name = "entidade_id", nullable = false, comment = "ID da entidade auditada")
     private String entidadeId;
-    @Column(name = "acao", nullable = false)
+    @Column(name = "acao", nullable = false, comment = "Ação realizada")
     private AuditAcoesEnum acao;
-    @Column(name = "valor_novo", nullable = true)
+    @Column(name = "valor_novo", nullable = true, comment = "Novo valor")
     private String valorNovo;
-    @Column(name = "valor_antigo", nullable = true)
+    @Column(name = "valor_antigo", nullable = true, comment = "Valor antigo")
     private String valorAntigo;
-    @Column(name = "dt_criacao", nullable = false)
+    @Column(name = "dt_criacao", nullable = false, comment = "Data de criação do registro de auditoria")
     private LocalDateTime dtCriacao;
-    @Column(name = "usuario", nullable = false)
+    @Column(name = "usuario", nullable = false, comment = "Usuário que realizou a ação")
     private String usuario;
 }

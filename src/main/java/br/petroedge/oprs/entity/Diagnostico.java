@@ -15,13 +15,14 @@ import lombok.Data;
 public class Diagnostico {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false, comment = "ID do diagnóstico")
     private String id;
-    @Column(name = "fonte_id", nullable = false)
+    @Column(name = "fonte_id", nullable = false, comment = "ID da fonte do diagnóstico")
     private Long fonteId;
-    @Column(name = "descricao", nullable = false)
+    @Column(name = "descricao", nullable = false, comment = "Descrição do diagnóstico")
     private String descricao;
-    @Column(name = "dt_criacao", nullable = false)
+    @Column(name = "dt_criacao", nullable = false, comment = "Data de criação do diagnóstico")
     private LocalDateTime dtCriacao;
-    @Column(name = "severidade", nullable = false)
+    @Column(name = "severidade", nullable = false, comment = "Severidade do diagnóstico")
     private Integer severidade;
 }
