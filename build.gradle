@@ -31,3 +31,24 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+
+spotless {
+	java {
+		target '**/*.java'
+		palantirJavaFormat('2.71.0')
+		removeUnusedImports()
+		trimTrailingWhitespace()
+		endWithNewline()
+		targetExclude('**/build/**', '**/target/**')
+	}
+	groovyGradle {
+		target '**/*.gradle'
+		greclipse()
+		trimTrailingWhitespace()
+		endWithNewline()
+	}
+}
+tasks.named('check') {
+	dependsOn spotlessCheck
+}
