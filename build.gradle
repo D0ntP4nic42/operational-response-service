@@ -1,8 +1,8 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.1.1'
-	id 'io.spring.dependency-management' version '1.1.7'
-	id 'com.diffplug.spotless' version '7.2.1'
+	alias(libs.plugins.springboot)
+	alias(libs.plugins.spring.dependency.management)
+	alias(libs.plugins.plugin.spotless)
 }
 
 group = 'br.petroedge'
@@ -19,20 +19,30 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
-	testCompileOnly 'org.projectlombok:lombok'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	testAnnotationProcessor 'org.projectlombok:lombok'
+	implementation(libs.springboot.web)
+	implementation(libs.springboot.webclient)
+	implementation(libs.springboot.restclient)
+	implementation(libs.springboot.actuator)
+	implementation(libs.springboot.security)
+	implementation(libs.springboot.oauth2)
+	implementation(libs.springboot.jpa)
+	implementation(libs.springboot.mail)
+	implementation(libs.liquibase.core)
+
+	implementation(libs.mysql.connector)
+	implementation(libs.slf4j)
+	implementation(libs.springdoc.openapi)
+
+	compileOnly(libs.lombok)
+	annotationProcessor(libs.lombok)
+
+	testImplementation(libs.springboot.test)
+	testImplementation(libs.swagger.parser)
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
 
 spotless {
 	java {
@@ -50,6 +60,7 @@ spotless {
 		endWithNewline()
 	}
 }
+
 tasks.named('check') {
 	dependsOn spotlessCheck
 }
