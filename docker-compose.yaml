@@ -21,7 +21,6 @@ services:
     image: mysql:8.3.0
     restart: always
     volumes:
-      - ./mysql/init-script.sql:/docker-entrypoint-initdb.d/init-script.sql
       - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=oprs
