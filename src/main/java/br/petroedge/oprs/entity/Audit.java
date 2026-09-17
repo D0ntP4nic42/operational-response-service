@@ -2,16 +2,19 @@ package br.petroedge.oprs.entity;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
-
 import br.petroedge.oprs.utils.AuditAcoesEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity(name = "tb_audit")
+@Entity 
+@Table(name = "tb_audit")
 @Data 
 public class Audit {
     @Id 
@@ -23,6 +26,7 @@ public class Audit {
     @Column(name = "entidade_id", nullable = false, comment = "ID da entidade auditada")
     private String entidadeId;
     @Column(name = "acao", nullable = false, comment = "Ação realizada")
+    @Enumerated(EnumType.STRING)
     private AuditAcoesEnum acao;
     @Column(name = "valor_novo", nullable = true, comment = "Novo valor")
     private String valorNovo;

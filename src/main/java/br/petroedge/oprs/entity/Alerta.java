@@ -2,17 +2,19 @@ package br.petroedge.oprs.entity;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
-
 import br.petroedge.oprs.utils.AlertaStatusEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity(name = "tb_alerta")
+@Entity
+@Table(name = "tb_alerta")
 @Data 
 public class Alerta {
     @Id 
@@ -30,8 +32,8 @@ public class Alerta {
     @Column (name = "destinatario", nullable = false, comment = "Destinatário do alerta")
     private String destinatario;
     @Column (name = "status", nullable = false, comment = "Status do alerta")
+    @Enumerated(EnumType.STRING)
     private AlertaStatusEnum status;
     @Column(name = "fk_diagnostico_id", nullable = false, comment = "ID do diagnóstico associado ao alerta")
-    @JoinColumn(name = "fk_diagnostico_id", referencedColumnName = "id")
     private String diagnosticoId;
 }

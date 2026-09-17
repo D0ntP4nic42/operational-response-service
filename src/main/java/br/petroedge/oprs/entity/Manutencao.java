@@ -2,16 +2,20 @@ package br.petroedge.oprs.entity;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
-
 import br.petroedge.oprs.utils.ManutencaoStatusEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
 
-@Entity(name = "tb_manutencao")
+@Entity 
+@Table(name = "tb_manutencao")
+@Data 
 public class Manutencao {
     @Id 
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,7 +25,7 @@ public class Manutencao {
     private String observacao;
     @Column(name = "dt_criacao", nullable = false, comment = "Data de criação da manutenção")
     private LocalDateTime dtCriacao;
-    @Column(name = "dt_atualizacao", nullable = false, comment = "Data de atualização da manutenção")
+    @Column(name = "dt_atualizacao", nullable = true, comment = "Data de atualização da manutenção")
     private LocalDateTime dtAtualizacao;
     @Column(name = "responsavel", nullable = false, comment = "Responsável pela manutenção")
     private String responsavel;
@@ -30,8 +34,8 @@ public class Manutencao {
     @Column (name = "dt_execucao", nullable = true, comment = "Data de execução da manutenção")
     private LocalDateTime dtExecucao;
     @Column(name = "status", nullable = false, comment = "Status da manutenção")
+    @Enumerated(EnumType.STRING)
     private ManutencaoStatusEnum status;
     @Column(name = "incidente_id", nullable = false, comment = "ID do incidente associado")
-    @JoinColumn(name = "fk_incidente_id", referencedColumnName = "id")
     private String incidenteId;
 }
