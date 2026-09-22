@@ -1,5 +1,6 @@
 package br.petroedge.oprs.entity;
 
+import br.petroedge.oprs.utils.IncidenteImportanciaEnum;
 import br.petroedge.oprs.utils.IncidenteStatusEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,4 +37,8 @@ public class Incidente {
     @Column(name = "status", nullable = false, comment = "Status do incidente")
     @Enumerated(EnumType.STRING)
     private IncidenteStatusEnum status;
+    
+    @Column(name = "importancia", nullable = false, comment = "Importância do incidente")
+    @Enumerated (EnumType.STRING)
+    private IncidenteImportanciaEnum importancia;
 }

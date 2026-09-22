@@ -19,6 +19,7 @@ CREATE TABLE tb_incidente (
     dt_criacao DATETIME NOT NULL COMMENT 'Data de criação do incidente',
     dt_atualizacao DATETIME NULL COMMENT 'Data de atualização do incidente',
     status VARCHAR(50) NOT NULL COMMENT 'Status do incidente',
+    importancia VARCHAR(50) NOT NULL COMMENT 'Importância do incidente',
 
     CONSTRAINT pk_tb_incidente
         PRIMARY KEY (id),
