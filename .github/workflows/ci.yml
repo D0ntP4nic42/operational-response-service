@@ -32,6 +32,22 @@ jobs:
     runs-on: ubuntu-latest
     needs: spotless
 
+    services:
+      mysql:
+        image: mysql:8.3
+        env:
+          MYSQL_DATABASE: oprs
+          MYSQL_USER: oprs
+          MYSQL_PASSWORD: oprs_pass
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
