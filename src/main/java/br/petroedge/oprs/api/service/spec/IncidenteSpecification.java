@@ -1,12 +1,12 @@
-package br.petroedge.oprs.service.spec;
+package br.petroedge.oprs.api.service.spec;
 
 import java.time.LocalDateTime;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import br.petroedge.oprs.entity.Incidente;
-import br.petroedge.oprs.utils.IncidenteImportanciaEnum;
-import br.petroedge.oprs.utils.IncidenteStatusEnum;
+import br.petroedge.oprs.api.entity.Incidente;
+import br.petroedge.oprs.api.utils.IncidenteImportanciaEnum;
+import br.petroedge.oprs.api.utils.IncidenteStatusEnum;
 
 public class IncidenteSpecification {
     public static Specification<Incidente> containsTermoBusca(String termoBusca) {

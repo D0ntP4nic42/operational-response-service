@@ -1,4 +1,4 @@
-package br.petroedge.oprs.utils;
+package br.petroedge.oprs.api.utils;
 
 public enum ManutencaoStatusEnum {
     ABERTA,

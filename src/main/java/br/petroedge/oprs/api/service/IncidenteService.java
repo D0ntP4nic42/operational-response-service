@@ -1,14 +1,14 @@
-package br.petroedge.oprs.service;
+package br.petroedge.oprs.api.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import br.petroedge.oprs.controller.incidente.IncidenteDto;
-import br.petroedge.oprs.entity.Incidente;
-import br.petroedge.oprs.repository.IncidenteRepository;
-import br.petroedge.oprs.service.spec.IncidenteSpecification;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDto;
+import br.petroedge.oprs.api.entity.Incidente;
+import br.petroedge.oprs.api.repository.IncidenteRepository;
+import br.petroedge.oprs.api.service.spec.IncidenteSpecification;
 
 @Service 
 public class IncidenteService {

@@ -1,6 +1,8 @@
-package br.petroedge.oprs.entity;
+package br.petroedge.oprs.api.entity;
 
-import br.petroedge.oprs.utils.ManutencaoStatusEnum;
+import java.time.LocalDateTime;
+
+import br.petroedge.oprs.api.utils.ManutencaoStatusEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,7 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import lombok.Data;
 
 @Entity
