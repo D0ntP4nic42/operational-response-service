@@ -16,7 +16,7 @@ public class IncidenteSpecification {
             }
             String likeTermoBusca = "%" + termoBusca.toLowerCase() + "%";
             return builder.or(
-                    builder.like(builder.lower(root.get("descricao")), likeTermoBusca));
+                    builder.like(builder.lower(root.get("descricao")), likeTermoBusca), builder.like(builder.lower(root.get("titulo")), likeTermoBusca));
         };
     }
 
