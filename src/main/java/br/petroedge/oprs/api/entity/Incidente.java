@@ -11,6 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -23,8 +25,12 @@ public class Incidente {
     @Column(name = "id", nullable = false, comment = "ID do incidente")
     private String id;
 
-    @Column(name = "fk_diagnostico_id", nullable = false, comment = "ID do diagnóstico associado")
-    private String diagnosticoId;
+    @ManyToOne
+    @JoinColumn(name = "fk_diagnostico_id", nullable = false)
+    private Diagnostico diagnostico;
+
+    @Column(name = "titulo", nullable = false, comment = "Título do incidente")
+    private String titulo;
 
     @Column(name = "descricao", nullable = false, comment = "Descrição do incidente")
     private String descricao;

@@ -15,6 +15,7 @@ CREATE TABLE tb_diagnostico (
 CREATE TABLE tb_incidente (
     id VARCHAR(36) NOT NULL COMMENT 'ID do incidente',
     fk_diagnostico_id VARCHAR(36) NOT NULL COMMENT 'ID do diagnóstico associado',
+    titulo VARCHAR(255) NOT NULL COMMENT 'Título do incidente',
     descricao VARCHAR(255) NOT NULL COMMENT 'Descrição do incidente',
     dt_criacao DATETIME NOT NULL COMMENT 'Data de criação do incidente',
     dt_atualizacao DATETIME NULL COMMENT 'Data de atualização do incidente',
@@ -31,6 +32,7 @@ CREATE TABLE tb_incidente (
 
 CREATE TABLE tb_manutencao (
     id VARCHAR(36) NOT NULL COMMENT 'ID da manutenção',
+    titulo VARCHAR(255) NOT NULL COMMENT 'Título da manutenção',
     observacao TEXT NOT NULL COMMENT 'Observação da manutenção',
     dt_criacao DATETIME NOT NULL COMMENT 'Data de criação da manutenção',
     dt_atualizacao DATETIME NULL COMMENT 'Data de atualização da manutenção',
@@ -38,13 +40,13 @@ CREATE TABLE tb_manutencao (
     dt_prevista DATETIME NOT NULL COMMENT 'Data prevista para a manutenção',
     dt_execucao DATETIME NULL COMMENT 'Data de execução da manutenção',
     status VARCHAR(50) NOT NULL COMMENT 'Status da manutenção',
-    incidente_id VARCHAR(36) NOT NULL COMMENT 'ID do incidente associado',
+    fk_incidente_id VARCHAR(36) NOT NULL COMMENT 'ID do incidente associado',
 
     CONSTRAINT pk_tb_manutencao
         PRIMARY KEY (id),
 
     CONSTRAINT fk_tb_manutencao_incidente
-        FOREIGN KEY (incidente_id)
+        FOREIGN KEY (fk_incidente_id)
         REFERENCES tb_incidente (id)
 );
 

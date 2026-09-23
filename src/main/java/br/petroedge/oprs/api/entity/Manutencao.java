@@ -10,6 +10,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -21,6 +23,9 @@ public class Manutencao {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false, comment = "ID da manutenção")
     private String id;
+
+    @Column(name = "titulo", nullable = false, comment = "Título da manutenção")
+    private String titulo;
 
     @Column(name = "observacao", nullable = false, comment = "Observação da manutenção")
     private String observacao;
@@ -44,6 +49,7 @@ public class Manutencao {
     @Enumerated(EnumType.STRING)
     private ManutencaoStatusEnum status;
 
-    @Column(name = "incidente_id", nullable = false, comment = "ID do incidente associado")
-    private String incidenteId;
+    @ManyToOne
+    @JoinColumn(name = "fk_incidente_id", nullable = false, comment = "ID do incidente associado") 
+    private Incidente incidente;
 }
