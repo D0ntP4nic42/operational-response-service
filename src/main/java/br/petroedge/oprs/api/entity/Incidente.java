@@ -1,7 +1,5 @@
 package br.petroedge.oprs.api.entity;
 
-import java.time.LocalDateTime;
-
 import br.petroedge.oprs.api.utils.IncidenteImportanciaEnum;
 import br.petroedge.oprs.api.utils.IncidenteStatusEnum;
 import jakarta.persistence.Column;
@@ -14,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 @Entity
@@ -44,8 +43,8 @@ public class Incidente {
     @Column(name = "status", nullable = false, comment = "Status do incidente")
     @Enumerated(EnumType.STRING)
     private IncidenteStatusEnum status;
-    
+
     @Column(name = "importancia", nullable = false, comment = "Importância do incidente")
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private IncidenteImportanciaEnum importancia;
 }

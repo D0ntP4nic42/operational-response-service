@@ -1,17 +1,14 @@
 package br.petroedge.oprs.api.controller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
-import org.springframework.http.HttpStatus;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
-@Builder 
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> implements Serializable {
     private final int status;
@@ -51,5 +48,4 @@ public class ApiResponse<T> implements Serializable {
     public static <T> ApiResponse<T> error(HttpStatus status, String message, T data) {
         return of(status, message, data);
     }
-
 }

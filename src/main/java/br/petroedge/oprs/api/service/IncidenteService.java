@@ -1,10 +1,5 @@
 package br.petroedge.oprs.api.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
-
 import br.petroedge.oprs.api.controller.RecursoModificadoResponse;
 import br.petroedge.oprs.api.controller.incidente.IncidenteDto.AdicionarIncidenteRequest;
 import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteDetalhadoResponse;
@@ -20,14 +15,21 @@ import br.petroedge.oprs.api.utils.IncidenteStatusEnum;
 import br.petroedge.oprs.api.utils.ManutencaoStatusEnum;
 import br.petroedge.oprs.api.utils.OperacaoEnum;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
-@Service 
+@Service
 public class IncidenteService {
     private final IncidenteRepository incidenteRepository;
     private final DiagnosticoRepository diagnosticoRepository;
     private final ManutencaoRepository manutencaoRepository;
 
-    public IncidenteService(IncidenteRepository incidenteRepository, DiagnosticoRepository diagnosticoRepository, ManutencaoRepository manutencaoRepository) {
+    public IncidenteService(
+            IncidenteRepository incidenteRepository,
+            DiagnosticoRepository diagnosticoRepository,
+            ManutencaoRepository manutencaoRepository) {
         this.incidenteRepository = incidenteRepository;
         this.diagnosticoRepository = diagnosticoRepository;
         this.manutencaoRepository = manutencaoRepository;
@@ -35,12 +37,11 @@ public class IncidenteService {
 
     public Page<BuscaIncidenteResponse> buscarIncidentes(Pageable pageable, BuscaIncidenteRequest request) {
         var specification = Specification.allOf(
-            IncidenteSpecification.containsTermoBusca(request.termoBusca()),
-            IncidenteSpecification.hasStatus(request.status()),
-            IncidenteSpecification.hasImportancia(request.importancia()),
-            IncidenteSpecification.creationBetween(request.dtCriacaoInicio(), request.dtCriacaoFim()),
-            IncidenteSpecification.updateBetween(request.dtAtualizacaoInicio(), request.dtAtualizacaoFim())
-        );
+                IncidenteSpecification.containsTermoBusca(request.termoBusca()),
+                IncidenteSpecification.hasStatus(request.status()),
+                IncidenteSpecification.hasImportancia(request.importancia()),
+                IncidenteSpecification.creationBetween(request.dtCriacaoInicio(), request.dtCriacaoFim()),
+                IncidenteSpecification.updateBetween(request.dtAtualizacaoInicio(), request.dtAtualizacaoFim()));
 
         var incidentes = incidenteRepository.findAll(specification, pageable);
 
@@ -48,36 +49,43 @@ public class IncidenteService {
     }
 
     public BuscaIncidenteDetalhadoResponse buscarIncidentePorId(String idIncidente) {
-        var incidente = incidenteRepository.findById(idIncidente)
+        var incidente = incidenteRepository
+                .findById(idIncidente)
                 .orElseThrow(() -> new RuntimeException("Incidente não encontrado com o ID: " + idIncidente));
 
         return IncidenteMapper.toDetalhadoResponse(incidente);
     }
 
     public RecursoModificadoResponse<String> adicionarIncidentes(AdicionarIncidenteRequest request) {
-        var diagnostico = diagnosticoRepository.findById(request.diagnosticoId())
-                .orElseThrow(() -> new RuntimeException("Diagnóstico não encontrado com o ID: " + request.diagnosticoId()));
+        var diagnostico = diagnosticoRepository
+                .findById(request.diagnosticoId())
+                .orElseThrow(
+                        () -> new RuntimeException("Diagnóstico não encontrado com o ID: " + request.diagnosticoId()));
 
         var incidente = incidenteRepository.save(IncidenteMapper.toEntity(request, diagnostico));
-        return new RecursoModificadoResponse<String>("Incidente criado com sucesso", OperacaoEnum.CRIACAO, incidente.getId());
+        return new RecursoModificadoResponse<String>(
+                "Incidente criado com sucesso", OperacaoEnum.CRIACAO, incidente.getId());
     }
 
     public RecursoModificadoResponse<String> atualizarIncidente(String idIncidente, EditarIncidenteRequest request) {
-        var incidente = incidenteRepository.findById(idIncidente)
+        var incidente = incidenteRepository
+                .findById(idIncidente)
                 .orElseThrow(() -> new RuntimeException("Incidente não encontrado com o ID: " + idIncidente));
 
         incidente.setTitulo(request.titulo());
         incidente.setDescricao(request.descricao());
         incidente.setImportancia(request.importancia());
-        
+
         incidenteRepository.save(incidente);
 
-        return new RecursoModificadoResponse<String>("Incidente atualizado com sucesso", OperacaoEnum.ATUALIZACAO, incidente.getId());
+        return new RecursoModificadoResponse<String>(
+                "Incidente atualizado com sucesso", OperacaoEnum.ATUALIZACAO, incidente.getId());
     }
 
     @Transactional
     public RecursoModificadoResponse<String> fecharIncidente(String idIncidente) {
-        var incidente = incidenteRepository.findById(idIncidente)
+        var incidente = incidenteRepository
+                .findById(idIncidente)
                 .orElseThrow(() -> new RuntimeException("Incidente não encontrado com o ID: " + idIncidente));
 
         incidente.setStatus(IncidenteStatusEnum.FECHADO);
@@ -90,6 +98,7 @@ public class IncidenteService {
             }
         }
 
-        return new RecursoModificadoResponse<String>("Incidente fechado com sucesso", OperacaoEnum.ATUALIZACAO, incidente.getId());
+        return new RecursoModificadoResponse<String>(
+                "Incidente fechado com sucesso", OperacaoEnum.ATUALIZACAO, incidente.getId());
     }
 }

@@ -1,12 +1,10 @@
 package br.petroedge.oprs.api.service.spec;
 
-import java.time.LocalDateTime;
-
-import org.springframework.data.jpa.domain.Specification;
-
 import br.petroedge.oprs.api.entity.Incidente;
 import br.petroedge.oprs.api.utils.IncidenteImportanciaEnum;
 import br.petroedge.oprs.api.utils.IncidenteStatusEnum;
+import java.time.LocalDateTime;
+import org.springframework.data.jpa.domain.Specification;
 
 public class IncidenteSpecification {
     public static Specification<Incidente> containsTermoBusca(String termoBusca) {
@@ -16,7 +14,8 @@ public class IncidenteSpecification {
             }
             String likeTermoBusca = "%" + termoBusca.toLowerCase() + "%";
             return builder.or(
-                    builder.like(builder.lower(root.get("descricao")), likeTermoBusca), builder.like(builder.lower(root.get("titulo")), likeTermoBusca));
+                    builder.like(builder.lower(root.get("descricao")), likeTermoBusca),
+                    builder.like(builder.lower(root.get("titulo")), likeTermoBusca));
         };
     }
 

@@ -1,7 +1,5 @@
 package br.petroedge.oprs.api.entity;
 
-import java.time.LocalDateTime;
-
 import br.petroedge.oprs.api.utils.ManutencaoStatusEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 @Entity
@@ -50,6 +49,6 @@ public class Manutencao {
     private ManutencaoStatusEnum status;
 
     @ManyToOne
-    @JoinColumn(name = "fk_incidente_id", nullable = false, comment = "ID do incidente associado") 
+    @JoinColumn(name = "fk_incidente_id", nullable = false, comment = "ID do incidente associado")
     private Incidente incidente;
 }
