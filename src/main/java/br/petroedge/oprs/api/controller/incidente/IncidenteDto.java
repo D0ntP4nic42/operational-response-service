@@ -4,6 +4,7 @@ import br.petroedge.oprs.api.utils.IncidenteImportanciaEnum;
 import br.petroedge.oprs.api.utils.IncidenteStatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class IncidenteDto {
 
@@ -36,7 +37,7 @@ public class IncidenteDto {
             @Schema(description = "Indica se um e-mail deve ser enviado ao destinatário", example = "true")
                     boolean enviarEmail,
             @Schema(description = "Endereço de e-mail do destinatário", example = "destinatario@gmail.com")
-                    String emailDestinatario) {}
+                    List<String> emailDestinatario) {}
 
     public record EditarIncidenteRequest(
             @Schema(description = "Título do incidente", example = "Temperatura elevada no motor") String titulo,
