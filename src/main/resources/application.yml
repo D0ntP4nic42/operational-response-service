@@ -18,3 +18,7 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/changelog.xml
+
+grpc:
+  server:
+    port: 9090
