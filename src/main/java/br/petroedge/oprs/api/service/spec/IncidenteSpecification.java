@@ -3,7 +3,7 @@ package br.petroedge.oprs.api.service.spec;
 import br.petroedge.oprs.api.entity.Incidente;
 import br.petroedge.oprs.api.utils.IncidenteImportanciaEnum;
 import br.petroedge.oprs.api.utils.IncidenteStatusEnum;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import org.springframework.data.jpa.domain.Specification;
 
 public class IncidenteSpecification {
@@ -37,7 +37,7 @@ public class IncidenteSpecification {
         };
     }
 
-    public static Specification<Incidente> creationBetween(LocalDateTime inicio, LocalDateTime fim) {
+    public static Specification<Incidente> creationBetween(Instant inicio, Instant fim) {
         return (root, query, builder) -> {
             if (inicio == null || fim == null) {
                 return builder.conjunction();
@@ -46,7 +46,7 @@ public class IncidenteSpecification {
         };
     }
 
-    public static Specification<Incidente> updateBetween(LocalDateTime inicio, LocalDateTime fim) {
+    public static Specification<Incidente> updateBetween(Instant inicio, Instant fim) {
         return (root, query, builder) -> {
             if (inicio == null || fim == null) {
                 return builder.conjunction();

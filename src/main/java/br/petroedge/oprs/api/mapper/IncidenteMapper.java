@@ -5,7 +5,7 @@ import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteDet
 import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteResponse;
 import br.petroedge.oprs.api.entity.Diagnostico;
 import br.petroedge.oprs.api.entity.Incidente;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public class IncidenteMapper {
     public static BuscaIncidenteResponse toResponse(Incidente incidente) {
@@ -35,7 +35,7 @@ public class IncidenteMapper {
         incidente.setTitulo(request.titulo());
         incidente.setDescricao(request.descricao());
         incidente.setImportancia(request.importancia());
-        incidente.setDtCriacao(LocalDateTime.now());
+        incidente.setDtCriacao(Instant.now());
         incidente.setDtAtualizacao(null);
         incidente.setDiagnostico(diagnostico);
         return incidente;

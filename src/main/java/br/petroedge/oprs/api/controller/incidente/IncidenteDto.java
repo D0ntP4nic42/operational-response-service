@@ -3,7 +3,7 @@ package br.petroedge.oprs.api.controller.incidente;
 import br.petroedge.oprs.api.utils.IncidenteImportanciaEnum;
 import br.petroedge.oprs.api.utils.IncidenteStatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 public class IncidenteDto {
@@ -17,10 +17,10 @@ public class IncidenteDto {
             @Schema(description = "Importância atribuída ao incidente", example = "ALTA")
                     IncidenteImportanciaEnum importancia,
             @Schema(description = "Data inicial do período de criação", example = "2026-09-01T00:00:00")
-                    LocalDateTime dtCriacaoInicio,
-            @Schema(description = "Data final do período de criação") LocalDateTime dtCriacaoFim,
-            @Schema(description = "Data inicial do período de atualização") LocalDateTime dtAtualizacaoInicio,
-            @Schema(description = "Data final do período de atualização") LocalDateTime dtAtualizacaoFim) {}
+                    Instant dtCriacaoInicio,
+            @Schema(description = "Data final do período de criação") Instant dtCriacaoFim,
+            @Schema(description = "Data inicial do período de atualização") Instant dtAtualizacaoInicio,
+            @Schema(description = "Data final do período de atualização") Instant dtAtualizacaoFim) {}
 
     public record AdicionarIncidenteRequest(
             @Schema(description = "Título do incidente", example = "Temperatura elevada no motor") String titulo,
@@ -54,8 +54,7 @@ public class IncidenteDto {
             @Schema(description = "Título do incidente", example = "Temperatura elevada no motor") String titulo,
             @Schema(description = "Status atual do incidente", example = "ABERTO") IncidenteStatusEnum status,
             @Schema(description = "Importância do incidente", example = "ALTA") IncidenteImportanciaEnum importancia,
-            @Schema(description = "Data de criação do incidente", example = "2026-09-23T10:30:00")
-                    LocalDateTime dtCriacao,
+            @Schema(description = "Data de criação do incidente", example = "2026-09-23T10:30:00") Instant dtCriacao,
             @Schema(
                             description = "Identificador do diagnóstico que originou o incidente",
                             example = "550e8400-e29b-41d4-a716-446655440001")
@@ -71,10 +70,9 @@ public class IncidenteDto {
                     String descricao,
             @Schema(description = "Status atual do incidente", example = "ABERTO") IncidenteStatusEnum status,
             @Schema(description = "Importância do incidente", example = "ALTA") IncidenteImportanciaEnum importancia,
-            @Schema(description = "Data de criação do incidente", example = "2026-09-23T10:30:00")
-                    LocalDateTime dtCriacao,
+            @Schema(description = "Data de criação do incidente", example = "2026-09-23T10:30:00") Instant dtCriacao,
             @Schema(description = "Data da última atualização do incidente", example = "2026-09-23T14:30:00")
-                    LocalDateTime dtAtualizacao,
+                    Instant dtAtualizacao,
             @Schema(
                             description = "Identificador do diagnóstico que originou o incidente",
                             example = "550e8400-e29b-41d4-a716-446655440001")
