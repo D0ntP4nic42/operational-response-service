@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import lombok.Data;
 
@@ -30,10 +31,10 @@ public class Manutencao {
     private String observacao;
 
     @Column(name = "dt_criacao", nullable = false, comment = "Data de criação da manutenção")
-    private LocalDateTime dtCriacao;
+    private Instant dtCriacao;
 
     @Column(name = "dt_atualizacao", nullable = true, comment = "Data de atualização da manutenção")
-    private LocalDateTime dtAtualizacao;
+    private Instant dtAtualizacao;
 
     @Column(name = "responsavel", nullable = false, comment = "Responsável pela manutenção")
     private String responsavel;
@@ -42,7 +43,7 @@ public class Manutencao {
     private LocalDateTime dtPrevista;
 
     @Column(name = "dt_execucao", nullable = true, comment = "Data de execução da manutenção")
-    private LocalDateTime dtExecucao;
+    private Instant dtExecucao;
 
     @Column(name = "status", nullable = false, comment = "Status da manutenção")
     @Enumerated(EnumType.STRING)

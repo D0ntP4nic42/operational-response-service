@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import lombok.Data;
 
 @Entity
@@ -38,7 +38,7 @@ public class Audit {
     private String valorAntigo;
 
     @Column(name = "dt_criacao", nullable = false, comment = "Data de criação do registro de auditoria")
-    private LocalDateTime dtCriacao;
+    private Instant dtCriacao;
 
     @Column(name = "usuario", nullable = false, comment = "Usuário que realizou a ação")
     private String usuario;

@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import lombok.Data;
 
 @Entity
@@ -35,10 +35,10 @@ public class Incidente {
     private String descricao;
 
     @Column(name = "dt_criacao", nullable = false, comment = "Data de criação do incidente")
-    private LocalDateTime dtCriacao;
+    private Instant dtCriacao;
 
     @Column(name = "dt_atualizacao", nullable = true, comment = "Data de atualização do incidente")
-    private LocalDateTime dtAtualizacao;
+    private Instant dtAtualizacao;
 
     @Column(name = "status", nullable = false, comment = "Status do incidente")
     @Enumerated(EnumType.STRING)

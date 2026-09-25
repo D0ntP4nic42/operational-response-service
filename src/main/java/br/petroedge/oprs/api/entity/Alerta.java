@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import lombok.Data;
 
 @Entity
@@ -28,10 +28,10 @@ public class Alerta {
     private String mensagem;
 
     @Column(name = "dt_criacao", nullable = false, comment = "Data de criação do alerta")
-    private LocalDateTime dtCriacao;
+    private Instant dtCriacao;
 
     @Column(name = "dt_envio", nullable = true, comment = "Data de envio do alerta")
-    private LocalDateTime dtEnvio;
+    private Instant dtEnvio;
 
     @Column(name = "destinatario", nullable = false, comment = "Destinatário do alerta")
     private String destinatario;

@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import lombok.Data;
 
 @Entity
@@ -25,7 +25,7 @@ public class Diagnostico {
     private String descricao;
 
     @Column(name = "dt_criacao", nullable = false, comment = "Data de criação do diagnóstico")
-    private LocalDateTime dtCriacao;
+    private Instant dtCriacao;
 
     @Column(name = "severidade", nullable = false, comment = "Severidade do diagnóstico")
     private Integer severidade;

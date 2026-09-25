@@ -17,28 +17,28 @@ INSERT INTO tb_diagnostico (
 ),
 (
     UUID(),
-    1,
+    2,
     'Vibração elevada detectada no equipamento.',
     NOW(),
     3
 ),
 (
     UUID(),
-    2,
+    3,
     'Pressão hidráulica abaixo do nível esperado.',
     NOW(),
     4
 ),
 (
     UUID(),
-    2,
+    4,
     'Nível de óleo abaixo do recomendado.',
     NOW(),
     2
 ),
 (
     UUID(),
-    3,
+    5,
     'Falha crítica detectada no sistema de acionamento.',
     NOW(),
     5
