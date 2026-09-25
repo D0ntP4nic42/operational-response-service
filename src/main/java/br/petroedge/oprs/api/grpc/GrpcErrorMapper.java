@@ -1,12 +1,11 @@
 package br.petroedge.oprs.api.grpc;
 
-import org.springframework.dao.DataIntegrityViolationException;
-
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 
-@Slf4j 
+@Slf4j
 public final class GrpcErrorMapper {
 
     private GrpcErrorMapper() {}
