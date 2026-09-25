@@ -10,11 +10,7 @@ option java_package = "br.com.petroedge.diagnostico.grpc";
 option java_outer_classname = "DiagnosticoProto";
 
 service DiagnosticoService {
-  // Recebe um diagnóstico de outro serviço
-  rpc EnviarDiagnostico (DiagnosticoRequest) returns (DiagnosticoResponse);
-
-  // Opcional: streaming, se a fonte enviar em lote/contínuo
-  rpc EnviarDiagnosticos (stream DiagnosticoRequest) returns (EnviarDiagnosticosResponse);
+  rpc RegistrarDiagnostico (DiagnosticoRequest) returns (DiagnosticoResponse);
 }
 
 message DiagnosticoRequest {
@@ -28,6 +24,6 @@ message DiagnosticoResponse {
   string id = 1;
 }
 
-message EnviarDiagnosticosResponse {
+message RegistrarDiagnosticosResponse {
   int32 total_recebidos = 1;
 }
