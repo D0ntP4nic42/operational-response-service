@@ -7,6 +7,9 @@ springBoot = '4.1.1'
 springDependencyManagementPlugin = '1.1.7'
 springdoc = '3.0.3'
 swaggerParser = '2.1.32'
+protobuf = '4.36.2'
+protocGen = '1.84.0'
+protoPlugin = '0.9.4'
 
 
 
@@ -27,8 +30,12 @@ springdoc-openapi = { group = "org.springdoc", name = "springdoc-openapi-starter
 swagger-parser = { group = "io.swagger.parser.v3", name = "swagger-parser", version.ref = "swaggerParser" }
 springboot-mail = { module = "org.springframework.boot:spring-boot-starter-mail", version.ref = "springBoot" }
 
+springboot-grpc = { module = "org.springframework.boot:spring-boot-starter-grpc-server", version.ref = "springBoot" }
+protobuf = { module = "com.google.protobuf:protobuf-java", version.ref = "protobuf" }
+
 
 [plugins]
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagementPlugin" }
 springboot = { id = "org.springframework.boot", version.ref = "springBoot" }
 plugin-spotless = { id = "com.diffplug.spotless", version.ref = "spotlessPlugin" }
+plugin-protobuf = { id = "com.google.protobuf", version.ref = "protoPlugin" }

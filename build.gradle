@@ -3,7 +3,7 @@ plugins {
 	alias(libs.plugins.springboot)
 	alias(libs.plugins.spring.dependency.management)
 	alias(libs.plugins.plugin.spotless)
-	id "com.google.protobuf" version "0.9.4"
+	alias(libs.plugins.plugin.protobuf)
 }
 
 group = 'br.petroedge'
@@ -40,27 +40,28 @@ dependencies {
 	testImplementation(libs.springboot.test)
 	testImplementation(libs.swagger.parser)
 
-	implementation("com.google.protobuf:protobuf-java:4.36.2")
-	implementation("org.springframework.boot:spring-boot-starter-grpc-server:4.1.1")
+	implementation(libs.protobuf)
+	implementation(libs.springboot.grpc)
 }
 
 protobuf {
-	protoc {
-		artifact = 'com.google.protobuf:protoc:4.36.2'
-	}
-	plugins {
-		grpc {
-			artifact = 'io.grpc:protoc-gen-grpc-java:1.84.0'
-		}
-	}
+    protoc {
+        artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.get()}"
+    }
 
-	generateProtoTasks {
-		all().each { task ->
-			task.plugins {
-				grpc {}
-			}
-		}
-	}
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${libs.versions.protocGen.get()}"
+        }
+    }
+
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                grpc {}
+            }
+        }
+    }
 }
 
 sourceSets{
