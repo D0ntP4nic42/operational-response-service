@@ -41,9 +41,7 @@ dependencies {
 	testImplementation(libs.swagger.parser)
 
 	implementation("com.google.protobuf:protobuf-java:4.36.2")
-	implementation("io.grpc:grpc-all:1.84.0")
-	implementation("io.grpc:grpc-netty-shaded:1.84.0")
-	implementation("io.grpc:grpc-services:1.84.0")
+	implementation("org.springframework.boot:spring-boot-starter-grpc-server:4.1.1")
 }
 
 protobuf {
