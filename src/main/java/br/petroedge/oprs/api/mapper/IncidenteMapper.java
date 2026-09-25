@@ -1,4 +1,4 @@
-package br.petroedge.oprs.api.controller.incidente;
+package br.petroedge.oprs.api.mapper;
 
 import br.petroedge.oprs.api.controller.incidente.IncidenteDto.AdicionarIncidenteRequest;
 import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteDetalhadoResponse;

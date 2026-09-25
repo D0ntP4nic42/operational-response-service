@@ -6,7 +6,7 @@ import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteDet
 import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteRequest;
 import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteResponse;
 import br.petroedge.oprs.api.controller.incidente.IncidenteDto.EditarIncidenteRequest;
-import br.petroedge.oprs.api.controller.incidente.IncidenteMapper;
+import br.petroedge.oprs.api.mapper.IncidenteMapper;
 import br.petroedge.oprs.api.repository.DiagnosticoRepository;
 import br.petroedge.oprs.api.repository.IncidenteRepository;
 import br.petroedge.oprs.api.repository.ManutencaoRepository;
