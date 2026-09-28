@@ -45,23 +45,23 @@ dependencies {
 }
 
 protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.get()}"
-    }
+	protoc {
+		artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.get()}"
+	}
 
-    plugins {
-        grpc {
-            artifact = "io.grpc:protoc-gen-grpc-java:${libs.versions.protocGen.get()}"
-        }
-    }
+	plugins {
+		grpc {
+			artifact = "io.grpc:protoc-gen-grpc-java:${libs.versions.protocGen.get()}"
+		}
+	}
 
-    generateProtoTasks {
-        all().each { task ->
-            task.plugins {
-                grpc {}
-            }
-        }
-    }
+	generateProtoTasks {
+		all().each { task ->
+			task.plugins {
+				grpc {}
+			}
+		}
+	}
 }
 
 sourceSets{
