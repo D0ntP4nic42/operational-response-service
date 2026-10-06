@@ -1,4 +1,22 @@
 services: 
+  app:
+    image: operational-response-service:0.0.1
+    container_name: oprs-app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=api
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/oprs?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=oprs
+      - SPRING_DATASOURCE_PASSWORD=oprs_pass
+      - SPRING_MAIL_HOST=oprs-mailpit
+      - SPRING_MAIL_PORT=1025
+      - SPRING_MAIL_USERNAME=
+      - SPRING_MAIL_PASSWORD=
+    networks:
+      oprs-dev-net:
+
   mailpit:
     image: axllent/mailpit:latest
     container_name: oprs-mailpit
