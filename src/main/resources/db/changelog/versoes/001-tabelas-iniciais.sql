@@ -58,6 +58,8 @@ CREATE TABLE tb_alerta (
     dt_envio TIMESTAMP NULL COMMENT 'Data de envio do alerta',
     destinatario VARCHAR(255) NOT NULL COMMENT 'Destinatário do alerta',
     status VARCHAR(50) NOT NULL COMMENT 'Status do alerta',
+    nr_tentativas INT NOT NULL COMMENT 'Número de tentativas de envio',
+    ds_erro VARCHAR(500) COMMENT 'Descrição do erro da última tentativa',
     fk_diagnostico_id VARCHAR(36) NOT NULL COMMENT 'ID do diagnóstico associado ao alerta',
 
     CONSTRAINT pk_tb_alerta

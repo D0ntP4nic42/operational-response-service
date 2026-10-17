@@ -1,4 +1,4 @@
-package br.petroedge.oprs.api.utils;
+package br.petroedge.oprs.common.utils;
 
 public enum AlertaStatusEnum {
     PENDENTE,

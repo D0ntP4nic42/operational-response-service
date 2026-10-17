@@ -1,6 +1,5 @@
-package br.petroedge.oprs.api.entity;
+package br.petroedge.oprs.common.entity;
 
-import br.petroedge.oprs.api.utils.AlertaStatusEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
+
+import br.petroedge.oprs.common.utils.AlertaStatusEnum;
 import lombok.Data;
 
 @Entity
@@ -39,6 +40,12 @@ public class Alerta {
     @Column(name = "status", nullable = false, comment = "Status do alerta")
     @Enumerated(EnumType.STRING)
     private AlertaStatusEnum status;
+
+    @Column(name = "nr_tentativas", nullable = false, comment = "Número de tentativas de envio")
+    private int numeroDeTentativas = 0;
+
+    @Column(name = "ds_erro", nullable = true, comment = "Descrição do erro da última tentativa")
+    private String descricaoErro;
 
     @Column(name = "fk_diagnostico_id", nullable = false, comment = "ID do diagnóstico associado ao alerta")
     private String diagnosticoId;
