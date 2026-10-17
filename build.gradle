@@ -96,3 +96,13 @@ spotless {
 tasks.named('check') {
 	dependsOn spotlessCheck
 }
+
+springBoot {
+    mainClass = project.findProperty("mainClass")
+        ?: "br.petroedge.oprs.OperationalResponseServiceApplication"
+}
+
+tasks.named("bootBuildImage") {
+    imageName = project.findProperty("imageName")
+        ?: "oprs:latest"
+}

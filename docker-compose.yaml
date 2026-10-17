@@ -1,12 +1,29 @@
-services: 
-  app:
-    image: operational-response-service:0.0.1
-    container_name: oprs-app
+services:
+  app-api:
+    image: oprs-api:latest
+    container_name: oprs-app-api
     restart: unless-stopped
     ports:
       - "8080:8080"
+      - "9090:9090"
     environment:
       - SPRING_PROFILES_ACTIVE=api
+      - SPRING_DATASOURCE_URL=jdbc:mysql://oprs-db:3306/oprs?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=oprs
+      - SPRING_DATASOURCE_PASSWORD=oprs_pass
+    networks:
+      oprs-dev-net:
+        aliases:
+          - oprs-app-api
+    depends_on:
+      - database
+
+  app-worker:
+    image: oprs-worker:latest
+    container_name: oprs-app-worker
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=worker
       - SPRING_DATASOURCE_URL=jdbc:mysql://oprs-db:3306/oprs?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=oprs
       - SPRING_DATASOURCE_PASSWORD=oprs_pass
@@ -16,6 +33,11 @@ services:
       - SPRING_MAIL_PASSWORD=
     networks:
       oprs-dev-net:
+        aliases:
+          - oprs-app-worker
+    depends_on:
+      - database
+      - mailpit
 
   mailpit:
     image: axllent/mailpit:latest
