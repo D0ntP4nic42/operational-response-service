@@ -7,7 +7,7 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=api
-      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/oprs?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://oprs-db:3306/oprs?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=oprs
       - SPRING_DATASOURCE_PASSWORD=oprs_pass
       - SPRING_MAIL_HOST=oprs-mailpit
