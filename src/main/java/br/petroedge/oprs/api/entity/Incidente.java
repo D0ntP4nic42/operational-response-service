@@ -13,6 +13,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.Instant;
+
+import org.hibernate.annotations.ColumnDefault;
+
 import lombok.Data;
 
 @Entity
@@ -42,7 +45,7 @@ public class Incidente {
 
     @Column(name = "status", nullable = false, comment = "Status do incidente")
     @Enumerated(EnumType.STRING)
-    private IncidenteStatusEnum status;
+    private IncidenteStatusEnum status = IncidenteStatusEnum.ABERTO;
 
     @Column(name = "importancia", nullable = false, comment = "Importância do incidente")
     @Enumerated(EnumType.STRING)

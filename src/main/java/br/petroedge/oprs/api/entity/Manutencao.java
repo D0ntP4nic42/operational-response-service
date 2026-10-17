@@ -47,7 +47,7 @@ public class Manutencao {
 
     @Column(name = "status", nullable = false, comment = "Status da manutenção")
     @Enumerated(EnumType.STRING)
-    private ManutencaoStatusEnum status;
+    private ManutencaoStatusEnum status = ManutencaoStatusEnum.ABERTA;
 
     @ManyToOne
     @JoinColumn(name = "fk_incidente_id", nullable = false, comment = "ID do incidente associado")
