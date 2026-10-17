@@ -1,11 +1,11 @@
 package br.petroedge.oprs.api.service;
 
 import br.petroedge.oprs.api.controller.RecursoModificadoResponse;
-import br.petroedge.oprs.api.controller.incidente.IncidenteDto.AdicionarIncidenteRequest;
-import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteDetalhadoResponse;
-import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteRequest;
-import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteResponse;
-import br.petroedge.oprs.api.controller.incidente.IncidenteDto.EditarIncidenteRequest;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDTO.AdicionarIncidenteRequest;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDTO.BuscaIncidenteDetalhadoResponse;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDTO.BuscaIncidenteRequest;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDTO.BuscaIncidenteResponse;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDTO.EditarIncidenteRequest;
 import br.petroedge.oprs.api.mapper.IncidenteMapper;
 import br.petroedge.oprs.api.repository.DiagnosticoRepository;
 import br.petroedge.oprs.api.repository.IncidenteRepository;
