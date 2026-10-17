@@ -1,8 +1,8 @@
 package br.petroedge.oprs.api.mapper;
 
-import br.petroedge.oprs.api.controller.incidente.IncidenteDto.AdicionarIncidenteRequest;
-import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteDetalhadoResponse;
-import br.petroedge.oprs.api.controller.incidente.IncidenteDto.BuscaIncidenteResponse;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDTO.AdicionarIncidenteRequest;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDTO.BuscaIncidenteDetalhadoResponse;
+import br.petroedge.oprs.api.controller.incidente.IncidenteDTO.BuscaIncidenteResponse;
 import br.petroedge.oprs.api.entity.Diagnostico;
 import br.petroedge.oprs.api.entity.Incidente;
 import java.time.Instant;
