@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /api/oprs
+
+spring:
+  grpc:
+    server:
+      port: 9090
+      observation:
+        enabled: true
+
+app:
+  email:
+    severidade-minima: 5
+    administrador: adm-diagnostico@gmail.com
