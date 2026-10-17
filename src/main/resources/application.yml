@@ -27,4 +27,4 @@ spring:
 app:
   email:
     severidade-minima: 5
-    administrado: adm-diagnostico@gmail.com
+    administrador: adm-diagnostico@gmail.com
