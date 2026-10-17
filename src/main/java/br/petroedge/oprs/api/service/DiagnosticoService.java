@@ -12,7 +12,7 @@ public class DiagnosticoService {
         this.diagnosticoRepository = diagnosticoRepository;
     }
 
-    public String salvarDiagnostico(Diagnostico diagnostico) {
-        return diagnosticoRepository.save(diagnostico).getId();
+    public Diagnostico salvarDiagnostico(Diagnostico diagnostico) {
+        return diagnosticoRepository.save(diagnostico);
     }
 }
