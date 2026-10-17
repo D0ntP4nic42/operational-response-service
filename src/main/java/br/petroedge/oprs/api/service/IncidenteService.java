@@ -69,7 +69,9 @@ public class IncidenteService {
         var incidente = incidenteRepository.save(IncidenteMapper.toEntity(request, diagnostico));
 
         if (request.enviarEmail()) {
-            emailQueueService.enfileirarParaVarios(request.emailDestinatario(), incidente.getTitulo(),
+            emailQueueService.enfileirarParaVarios(
+                    request.emailDestinatario(),
+                    incidente.getTitulo(),
                     incidente.getDescricao(),
                     incidente.getDiagnostico().getId());
         }

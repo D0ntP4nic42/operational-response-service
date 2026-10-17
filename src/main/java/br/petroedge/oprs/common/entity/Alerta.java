@@ -1,5 +1,6 @@
 package br.petroedge.oprs.common.entity;
 
+import br.petroedge.oprs.common.utils.AlertaStatusEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,8 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
-
-import br.petroedge.oprs.common.utils.AlertaStatusEnum;
 import lombok.Data;
 
 @Entity

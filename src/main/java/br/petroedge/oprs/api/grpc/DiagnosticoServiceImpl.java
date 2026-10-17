@@ -8,7 +8,6 @@ import br.petroedge.oprs.api.mapper.DiagnosticoMapper;
 import br.petroedge.oprs.api.service.DiagnosticoService;
 import br.petroedge.oprs.common.service.EmailQueueService;
 import io.grpc.stub.StreamObserver;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +21,11 @@ public class DiagnosticoServiceImpl extends DiagnosticoServiceGrpc.DiagnosticoSe
 
     private final EmailQueueService emailQueueService;
 
-    public DiagnosticoServiceImpl(@Value("${app.email.severidade-minima}") int severidadeMinimaParaEnvio, @Value("${app.email.administrador}") String destinatarioEmail, DiagnosticoService diagnosticoService, EmailQueueService emailQueueService) {
+    public DiagnosticoServiceImpl(
+            @Value("${app.email.severidade-minima}") int severidadeMinimaParaEnvio,
+            @Value("${app.email.administrador}") String destinatarioEmail,
+            DiagnosticoService diagnosticoService,
+            EmailQueueService emailQueueService) {
         this.severidadeMinimaParaEnvio = severidadeMinimaParaEnvio;
         this.destinatarioEmail = destinatarioEmail;
         this.diagnosticoService = diagnosticoService;
@@ -38,7 +41,11 @@ public class DiagnosticoServiceImpl extends DiagnosticoServiceGrpc.DiagnosticoSe
                     DiagnosticoResponse.newBuilder().setId(diagnostico.getId()).build();
 
             if (diagnostico.getSeveridade() >= severidadeMinimaParaEnvio) {
-                emailQueueService.enfileirar(destinatarioEmail, "Diagnóstico com severidade encontrado", diagnostico.getDescricao(), diagnostico.getId());
+                emailQueueService.enfileirar(
+                        destinatarioEmail,
+                        "Diagnóstico com severidade encontrado",
+                        diagnostico.getDescricao(),
+                        diagnostico.getId());
             }
 
             responseObserver.onNext(response);

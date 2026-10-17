@@ -1,18 +1,15 @@
 package br.petroedge.oprs.api.service.spec;
 
+import br.petroedge.oprs.api.entity.Manutencao;
+import br.petroedge.oprs.api.utils.ManutencaoStatusEnum;
 import java.time.Instant;
 import java.time.LocalDateTime;
-
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import br.petroedge.oprs.api.entity.Manutencao;
-import br.petroedge.oprs.api.utils.ManutencaoStatusEnum;
-
 public class ManutencaoSpecification {
 
-    private ManutencaoSpecification() {
-    }
+    private ManutencaoSpecification() {}
 
     public static Specification<Manutencao> containsTermoBusca(String termoBusca) {
         return (root, query, cb) -> {
@@ -20,9 +17,7 @@ public class ManutencaoSpecification {
                 return cb.conjunction();
             }
             var like = "%" + termoBusca.toLowerCase() + "%";
-            return cb.or(
-                    cb.like(cb.lower(root.get("titulo")), like),
-                    cb.like(cb.lower(root.get("observacao")), like));
+            return cb.or(cb.like(cb.lower(root.get("titulo")), like), cb.like(cb.lower(root.get("observacao")), like));
         };
     }
 

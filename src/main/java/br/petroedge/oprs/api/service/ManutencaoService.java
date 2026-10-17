@@ -1,13 +1,5 @@
 package br.petroedge.oprs.api.service;
 
-import java.time.Instant;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import br.petroedge.oprs.api.controller.RecursoModificadoResponse;
 import br.petroedge.oprs.api.controller.manutencao.ManutencaoDTO.AdicionarManutencaoRequest;
 import br.petroedge.oprs.api.controller.manutencao.ManutencaoDTO.BuscaManutencaoDetalhadoResponse;
@@ -20,6 +12,12 @@ import br.petroedge.oprs.api.repository.ManutencaoRepository;
 import br.petroedge.oprs.api.service.spec.ManutencaoSpecification;
 import br.petroedge.oprs.api.utils.ManutencaoStatusEnum;
 import br.petroedge.oprs.api.utils.OperacaoEnum;
+import java.time.Instant;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ManutencaoService {
@@ -56,8 +54,7 @@ public class ManutencaoService {
     public RecursoModificadoResponse<String> adicionarManutencao(AdicionarManutencaoRequest request) {
         var incidente = incidenteRepository
                 .findById(request.incidenteId())
-                .orElseThrow(
-                        () -> new RuntimeException("Incidente não encontrado com o ID: " + request.incidenteId()));
+                .orElseThrow(() -> new RuntimeException("Incidente não encontrado com o ID: " + request.incidenteId()));
 
         var manutencao = manutencaoRepository.save(ManutencaoMapper.toEntity(request, incidente));
 

@@ -98,11 +98,11 @@ tasks.named('check') {
 }
 
 springBoot {
-    mainClass = project.findProperty("mainClass")
-        ?: "br.petroedge.oprs.OperationalResponseServiceApplication"
+	mainClass = project.findProperty("mainClass")
+	?: "br.petroedge.oprs.OperationalResponseServiceApplication"
 }
 
 tasks.named("bootBuildImage") {
-    imageName = project.findProperty("imageName")
-        ?: "oprs:latest"
+	imageName = project.findProperty("imageName")
+	?: "oprs:latest"
 }

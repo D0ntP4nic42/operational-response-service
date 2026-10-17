@@ -1,13 +1,11 @@
 package br.petroedge.oprs.common.service;
 
-import java.time.Instant;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import br.petroedge.oprs.common.entity.Alerta;
 import br.petroedge.oprs.common.repository.AlertaRepository;
 import br.petroedge.oprs.common.utils.AlertaStatusEnum;
+import java.time.Instant;
+import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class EmailQueueService {

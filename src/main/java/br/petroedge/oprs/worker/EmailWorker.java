@@ -1,17 +1,15 @@
 package br.petroedge.oprs.worker;
 
-import java.time.Instant;
-
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
-
 import br.petroedge.oprs.common.entity.Alerta;
 import br.petroedge.oprs.common.repository.AlertaRepository;
 import br.petroedge.oprs.common.utils.AlertaStatusEnum;
 import jakarta.transaction.Transactional;
+import java.time.Instant;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j

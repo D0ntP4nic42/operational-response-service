@@ -1,14 +1,13 @@
 package br.petroedge.oprs.api.mapper;
 
-import java.time.Instant;
-import java.time.ZoneId;
-
 import br.petroedge.oprs.api.controller.manutencao.ManutencaoDTO.AdicionarManutencaoRequest;
 import br.petroedge.oprs.api.controller.manutencao.ManutencaoDTO.BuscaManutencaoDetalhadoResponse;
 import br.petroedge.oprs.api.controller.manutencao.ManutencaoDTO.BuscaManutencaoResponse;
 import br.petroedge.oprs.api.entity.Incidente;
 import br.petroedge.oprs.api.entity.Manutencao;
 import br.petroedge.oprs.api.utils.ManutencaoStatusEnum;
+import java.time.Instant;
+import java.time.ZoneId;
 
 public class ManutencaoMapper {
 
@@ -19,7 +18,8 @@ public class ManutencaoMapper {
         manutencao.setTitulo(request.titulo());
         manutencao.setObservacao(request.observacao());
         manutencao.setResponsavel(request.responsavel());
-        manutencao.setDtPrevista(request.dtPrevista().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        manutencao.setDtPrevista(
+                request.dtPrevista().atZone(ZoneId.systemDefault()).toLocalDateTime());
         manutencao.setDtCriacao(Instant.now());
         manutencao.setStatus(ManutencaoStatusEnum.ABERTA);
         manutencao.setIncidente(incidente);
