@@ -14,6 +14,7 @@ import br.petroedge.oprs.api.service.spec.IncidenteSpecification;
 import br.petroedge.oprs.api.utils.IncidenteStatusEnum;
 import br.petroedge.oprs.api.utils.ManutencaoStatusEnum;
 import br.petroedge.oprs.api.utils.OperacaoEnum;
+import br.petroedge.oprs.common.service.EmailQueueService;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,14 +26,17 @@ public class IncidenteService {
     private final IncidenteRepository incidenteRepository;
     private final DiagnosticoRepository diagnosticoRepository;
     private final ManutencaoRepository manutencaoRepository;
+    private final EmailQueueService emailQueueService;
 
     public IncidenteService(
             IncidenteRepository incidenteRepository,
             DiagnosticoRepository diagnosticoRepository,
-            ManutencaoRepository manutencaoRepository) {
+            ManutencaoRepository manutencaoRepository,
+            EmailQueueService emailQueueService) {
         this.incidenteRepository = incidenteRepository;
         this.diagnosticoRepository = diagnosticoRepository;
         this.manutencaoRepository = manutencaoRepository;
+        this.emailQueueService = emailQueueService;
     }
 
     public Page<BuscaIncidenteResponse> buscarIncidentes(Pageable pageable, BuscaIncidenteRequest request) {
@@ -63,6 +67,12 @@ public class IncidenteService {
                         () -> new RuntimeException("Diagnóstico não encontrado com o ID: " + request.diagnosticoId()));
 
         var incidente = incidenteRepository.save(IncidenteMapper.toEntity(request, diagnostico));
+
+        if (request.enviarEmail()) {
+            emailQueueService.enfileirarParaVarios(request.emailDestinatario(), incidente.getTitulo(),
+                    incidente.getDescricao(),
+                    incidente.getDiagnostico().getId());
+        }
         return new RecursoModificadoResponse<String>(
                 "Incidente criado com sucesso", OperacaoEnum.CRIACAO, incidente.getId());
     }
