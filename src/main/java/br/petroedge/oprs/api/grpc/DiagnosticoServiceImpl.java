@@ -38,7 +38,7 @@ public class DiagnosticoServiceImpl extends DiagnosticoServiceGrpc.DiagnosticoSe
                     DiagnosticoResponse.newBuilder().setId(diagnostico.getId()).build();
 
             if (diagnostico.getSeveridade() >= severidadeMinimaParaEnvio) {
-                emailQueueService.enfileirar(destinatarioEmail, "Diagnóstico com severidade maior que a mínima para análise", diagnostico.getDescricao(), diagnostico.getId());
+                emailQueueService.enfileirar(destinatarioEmail, "Diagnóstico com severidade encontrado", diagnostico.getDescricao(), diagnostico.getId());
             }
 
             responseObserver.onNext(response);

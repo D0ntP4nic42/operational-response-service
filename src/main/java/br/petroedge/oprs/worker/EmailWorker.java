@@ -40,6 +40,7 @@ public class EmailWorker {
     private void enviar(Alerta email) {
         try {
             var message = new SimpleMailMessage();
+            message.setFrom("oprs-nao-responda@gmail.com");
             message.setTo(email.getDestinatario());
             message.setSubject(email.getAssunto());
             message.setText(email.getMensagem());
