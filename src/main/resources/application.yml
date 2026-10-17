@@ -1,11 +1,13 @@
 spring:
   application:
     name: operational-response-service
+  profiles:
+    active: api
 
   datasource:
-    url: jdbc:mysql://localhost:3306/oprs
-    username: oprs
-    password: oprs_pass
+    url: ${DB_URL:jdbc:mysql://localhost:3306/oprs}
+    username: ${DB_USERNAME:oprs}
+    password: ${DB_PASSWORD:oprs_pass}
 
   jpa:
     hibernate:
