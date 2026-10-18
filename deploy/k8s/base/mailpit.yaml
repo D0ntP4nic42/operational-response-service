@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: oprs-mailpit-pvc
+  namespace: petroedge
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 256Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oprs-mailpit
+  namespace: petroedge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oprs-mailpit
+  template:
+    metadata:
+      labels:
+        app: oprs-mailpit
+    spec:
+      containers:
+        - name: mailpit
+          image: axllent/mailpit:latest
+          ports:
+            - containerPort: 8025
+              name: ui
+            - containerPort: 1025
+              name: smtp
+          env:
+            - name: MP_SMTP_AUTH_ACCEPT_ANY
+              value: "1"
+            - name: MP_SMTP_AUTH_ALLOW_INSECURE
+              value: "1"
+          volumeMounts:
+            - name: mailpit-storage
+              mountPath: /data
+      volumes:
+        - name: mailpit-storage
+          persistentVolumeClaim:
+            claimName: oprs-mailpit-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oprs-mailpit
+  namespace: petroedge
+spec:
+  selector:
+    app: oprs-mailpit
+  ports:
+    - name: ui
+      port: 8025
+      targetPort: 8025
+    - name: smtp
+      port: 1025
+      targetPort: 1025

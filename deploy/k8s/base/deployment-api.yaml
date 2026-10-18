@@ -1,0 +1,78 @@
+# deployment-api.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oprs-api
+  namespace: oprs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oprs-api
+  template:
+    metadata:
+      labels:
+        app: oprs-api
+    spec:
+      containers:
+        - name: oprs-api
+          image: oprs-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+            - containerPort: 9090
+              name: grpc
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "api"
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: oprs-config
+                  key: DB_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: oprs-secrets
+                  key: DB_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oprs-secrets
+                  key: DB_PASSWORD
+          readinessProbe:
+            httpGet:
+              path: /api/oprs/actuator/health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/oprs/actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oprs-api
+  namespace: oprs
+spec:
+  selector:
+    app: oprs-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+    - name: grpc
+      port: 9090
+      targetPort: 9090

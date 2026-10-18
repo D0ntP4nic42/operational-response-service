@@ -1,0 +1,12 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oprs-config
+  namespace: oprs
+data:
+  DB_URL: "jdbc:mysql://mysql:3306/oprs"
+  MAIL_HOST: "smtp.gmail.com"
+  MAIL_PORT: "587"
+  EMAIL_SEVERIDADE_MINIMA: "5"
+  EMAIL_ADMINISTRADOR: "adm-diagnostico@gmail.com"
