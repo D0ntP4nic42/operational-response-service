@@ -19,7 +19,8 @@ down-setup-dev:
 	@docker compose down
 
 grpc-ui-docker:
-	docker run --rm -it --network host \
+	docker run --rm -it --network oprs-dev-net \
+		-p 8081:8081 \
 		fullstorydev/grpcui \
 		-plaintext -port 8081 \
-		localhost:9090
+		app-api:9090
